@@ -68,8 +68,8 @@ module.exports = ( grunt ) ->
             custom:
                 options: {}
                 src: [
-                    "test/fixtures/default/**/*.coffee"
-                    "test/fixtures/custom"
+                    "test/fixtures/default"
+                    "test/fixtures/custom/**/*.coffee"
                 ]
 
     grunt.loadTasks "tasks"
