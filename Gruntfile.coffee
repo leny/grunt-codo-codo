@@ -63,7 +63,6 @@ module.exports = ( grunt ) ->
             default:
                 options: {}
                 src: "test/fixtures/default"
-                dest: "test/expected/default-doc"
             custom:
                 options: {}
                 src: [
