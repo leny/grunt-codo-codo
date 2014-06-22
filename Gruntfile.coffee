@@ -64,7 +64,10 @@ module.exports = ( grunt ) ->
                 options: {}
                 src: "test/fixtures/default"
             custom:
-                options: {}
+                options:
+                    name: "Codo-codo"
+                    title: "Codo-codo Documentation"
+                    extra: [ "LICENSE-MIT" ]
                 src: [
                     "test/fixtures/default"
                     "test/fixtures/custom/**/*.coffee"
