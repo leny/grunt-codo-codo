@@ -1,0 +1,43 @@
+{
+  "name": "grunt-codo-codo",
+  "version": "0.0.1",
+  "description": "Grunt task for generating codo documentation.",
+  "keywords": [
+    "gruntplugin",
+    "coffeescript",
+    "codo",
+    "doc",
+    "documentation"
+  ],
+  "homepage": "https://github.com/leny/grunt-codo-codo",
+  "author": {
+    "name": "Leny",
+    "email": "info@flatland.be",
+    "url": "http://leny.me"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/leny/grunt-codo-codo.git"
+  },
+  "bugs": {
+    "url": "https://github.com/leny/grunt-codo-codo/issues"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/leny/grunt-codo-codo/blob/master/LICENSE-MIT"
+    }
+  ],
+  "main": "Gruntfile.js",
+  "engines": {
+    "node": ">= 0.10.0"
+  },
+  "devDependencies": {
+    "grunt-contrib-clean": "~0.4",
+    "grunt-contrib-coffee": "~0.10",
+    "grunt-coffeelint": "~0.0",
+    "grunt-contrib-watch": "~0.6",
+    "matchdep": "~0.3",
+    "grunt": "~0.4.5"
+  }
+}
