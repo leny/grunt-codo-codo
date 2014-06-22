@@ -68,6 +68,7 @@ module.exports = ( grunt ) ->
             custom:
                 options: {}
                 src: [
+                    "test/fixtures/default/**/*.coffee"
                     "test/fixtures/custom"
                 ]
 
