@@ -39,5 +39,8 @@
     "grunt-contrib-watch": "~0.6",
     "matchdep": "~0.3",
     "grunt": "~0.4.5"
+  },
+  "dependencies": {
+    "lodash": "^2.4.1"
   }
 }
