@@ -62,15 +62,15 @@ module.exports = ( grunt ) ->
         codo:
             default:
                 options: {}
-                src: [
-                    "test/fixtures/default"
-                ]
+                src: "test/fixtures/default"
+                dest: "test/expected/default-doc"
             custom:
                 options: {}
                 src: [
                     "test/fixtures/default"
                     "test/fixtures/custom/**/*.coffee"
                 ]
+                dest: "test/expected/custom-docs"
 
     grunt.loadTasks "tasks"
 
