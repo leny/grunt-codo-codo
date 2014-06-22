@@ -15,8 +15,22 @@ lodash = require("lodash");
 
 module.exports = function(grunt) {
   return grunt.registerMultiTask("codo", "Generate codo documentation.", function() {
-    var aFolderSources, oOptions;
-    oOptions = this.options();
+    var aFolderSources, oOptions, _ref;
+    oOptions = this.options({
+      extension: "coffee",
+      output: (_ref = this.data.dest) != null ? _ref : "./doc",
+      theme: "default",
+      name: "Codo",
+      title: "Documentation",
+      readme: "README.md",
+      quiet: false,
+      verbose: false,
+      undocumented: false,
+      closure: false,
+      "private": false,
+      analytics: false,
+      extra: []
+    });
     aFolderSources = [];
     this.filesSrc.filter(function(sFilePath) {
       return grunt.file.exists(sFilePath);
@@ -28,9 +42,8 @@ module.exports = function(grunt) {
         return aFolderSources.push(path.dirname(sFilePath));
       }
     });
-    console.log(aFolderSources);
     aFolderSources = lodash.uniq(aFolderSources);
-    console.log(aFolderSources);
+    console.log(oOptions);
     return grunt.log.writeln("Please, now, do something.");
   });
 };

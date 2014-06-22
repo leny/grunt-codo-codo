@@ -14,7 +14,20 @@ lodash = require "lodash"
 module.exports = ( grunt ) ->
 
     grunt.registerMultiTask "codo", "Generate codo documentation.", ->
-        oOptions = @options()
+        oOptions = @options
+            extension: "coffee"
+            output: @data.dest ? "./doc"
+            theme: "default"
+            name: "Codo"
+            title: "Documentation"
+            readme: "README.md"
+            quiet: no
+            verbose: no
+            undocumented: no
+            closure: no
+            private: no
+            analytics: no
+            extra: []
 
         aFolderSources = []
 
@@ -28,6 +41,6 @@ module.exports = ( grunt ) ->
 
         aFolderSources = lodash.uniq aFolderSources
 
-        console.log aFolderSources
+        console.log oOptions
 
         grunt.log.writeln "Please, now, do something."
