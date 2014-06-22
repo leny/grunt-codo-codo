@@ -80,3 +80,13 @@ module.exports = ( grunt ) ->
         "clean"
         "codo"
     ]
+
+    grunt.registerTask "build", [
+        "coffeelint"
+        "coffee"
+    ]
+
+    grunt.registerTask "test", [
+        "clean"
+        "codo"
+    ]
