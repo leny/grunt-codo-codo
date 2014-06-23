@@ -36,11 +36,14 @@
     "grunt-contrib-clean": "~0.4",
     "grunt-contrib-coffee": "~0.10",
     "grunt-coffeelint": "~0.0",
-    "grunt-contrib-watch": "~0.6",
     "matchdep": "~0.3",
     "grunt": "~0.4.5"
   },
   "dependencies": {
-    "lodash": "^2.4.1"
+    "chalk": "^0.4.0",
+    "cli-table": "^0.3.0",
+    "codo": "^2.0.9",
+    "coffee-script": "^1.7.1",
+    "lodash": "~2.4"
   }
 }

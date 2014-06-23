@@ -21,3 +21,5 @@ class Example.Plant
   # @option options [Number] speed the growth in cm
   #
   grow: (options = {}) ->
+
+  clone: ->

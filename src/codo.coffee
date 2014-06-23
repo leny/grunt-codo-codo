@@ -10,6 +10,10 @@
 
 path = require "path"
 lodash = require "lodash"
+chalk = require "chalk"
+CLITable = require "cli-table"
+
+Codo = require "./utils/command.js"
 
 module.exports = ( grunt ) ->
 
@@ -27,6 +31,7 @@ module.exports = ( grunt ) ->
             closure: no
             private: no
             analytics: no
+            stats: yes
             extra: []
 
         aFolderSources = []
@@ -41,6 +46,66 @@ module.exports = ( grunt ) ->
 
         aFolderSources = lodash.uniq aFolderSources
 
-        console.log oOptions
+        oCodo = new Codo aFolderSources, oOptions
 
-        grunt.log.writeln "Please, now, do something."
+        oCodo.generate()
+
+        if oOptions.stats
+            oTable = new CLITable
+                head: [ "", chalk.cyan( "Documented" ), chalk.cyan( "Undocumented" ), chalk.cyan( "Total" ), chalk.cyan( "Percent" ) ]
+
+            oStats = oCodo.getStats()
+
+            oTable.push [ chalk.cyan( "files" ), "", "", oStats.files, "" ]
+            oTable.push [ chalk.cyan( "extras" ), "", "", oStats.extras, "" ]
+            oTable.push [
+                chalk.cyan( "classes" )
+                oStats.classes.documented
+                oStats.classes.undocumented
+                oStats.classes.total
+                if iPercent = oStats.classes.percent then chalk[ if iPercent > 100 then "yellow" else "green" ]( "#{ iPercent }%" ) else "-"
+            ]
+            oTable.push [
+                chalk.cyan( "mixins" )
+                oStats.mixins.documented
+                oStats.mixins.undocumented
+                oStats.mixins.total
+                if iPercent = oStats.mixins.percent then chalk[ if iPercent > 100 then "yellow" else "green" ]( "#{ iPercent }%" ) else "-"
+            ]
+            oTable.push [
+                chalk.cyan( "methods" )
+                oStats.methods.documented
+                oStats.methods.undocumented
+                oStats.methods.total
+                if iPercent = oStats.methods.percent then chalk[ if iPercent > 100 then "yellow" else "green" ]( "#{ iPercent }%" ) else "-"
+            ]
+            oTable.push []
+            oTable.push [ "", chalk.cyan( "Files" ), chalk.cyan( "Extras" ), chalk.cyan( "Objects" ), chalk.cyan( "Coverage" ) ]
+            oTable.push [
+                chalk.underline.cyan @nameArgs
+                oStats.files
+                oStats.extras
+                oStats.all.total
+                chalk.bold[ if ( iPercent = oStats.all.percent ) > 100 then "yellow" else "green" ]( "#{ iPercent }%" )
+            ]
+
+            grunt.log.writeln()
+            grunt.log.writeln oTable.toString()
+            grunt.log.writeln()
+
+        if oOptions.undocumented and ( oStats ?= oCodo.getStats() ).all.undocumented
+            grunt.log.writeln()
+            grunt.log.writeln chalk.yellow.underline "Undocumented objects"
+            grunt.log.writeln()
+
+            for sSection, oData of oStats.undocumented when oData.length
+                oTable = new CLITable
+                    head: [ chalk.cyan( sSection ), chalk.cyan( "Path" ) ]
+
+                for oEntry in oData
+                    oTable.push [
+                        chalk.cyan oEntry[ 0 ]
+                        path.relative process.cwd(), oEntry[ 1 ]
+                    ]
+                grunt.log.writeln oTable.toString()
+                grunt.log.writeln()
