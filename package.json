@@ -1,6 +1,6 @@
 {
   "name": "grunt-codo-codo",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Grunt task for generating codo documentation.",
   "keywords": [
     "gruntplugin",
