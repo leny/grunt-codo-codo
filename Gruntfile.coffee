@@ -41,24 +41,18 @@ module.exports = ( grunt ) ->
                     level: "error"
                 space_operators:
                     level: "error"
-            tasks:
+            task:
                 files:
                     src: [ "src/*.coffee" ]
         coffee:
             options:
                 bare: yes
-            tasks:
+            task:
                 files:
+                    "tasks/utils/command.js": "src/utils/command.coffee"
                     "tasks/codo.js": "src/codo.coffee"
         clean:
             test: [ "test/expected", "doc" ]
-        watch:
-            tasks:
-                files: "src/**/*.coffee"
-                tasks: [
-                    "coffeelint"
-                    "coffee"
-                ]
         codo:
             default:
                 options: {}
@@ -68,6 +62,7 @@ module.exports = ( grunt ) ->
                     name: "Codo-codo"
                     title: "Codo-codo Documentation"
                     extra: [ "LICENSE-MIT" ]
+                    undocumented: yes
                 src: [
                     "test/fixtures/default"
                     "test/fixtures/custom/**/*.coffee"
