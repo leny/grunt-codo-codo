@@ -63,6 +63,7 @@ module.exports = ( grunt ) ->
                     title: "Codo-codo Documentation"
                     extra: [ "LICENSE-MIT" ]
                     undocumented: yes
+                    stats: no
                 src: [
                     "test/fixtures/default"
                     "test/fixtures/custom/**/*.coffee"
