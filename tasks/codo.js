@@ -21,7 +21,7 @@ Codo = require("./utils/command.js");
 
 module.exports = function(grunt) {
   return grunt.registerMultiTask("codo", "Generate codo documentation.", function() {
-    var aFolderSources, iPercent, oCodo, oData, oEntry, oOptions, oStats, oTable, sSection, _i, _len, _ref, _ref1, _results;
+    var aFolderSources, iPercent, oCodo, oData, oEntry, oOptions, oStats, oTable, sSection, _i, _j, _len, _len1, _ref, _ref1, _ref2, _results;
     oOptions = this.options({
       extension: "coffee",
       output: (_ref = this.data.dest) != null ? _ref : "./doc",
@@ -57,11 +57,11 @@ module.exports = function(grunt) {
         head: ["", chalk.cyan("Documented"), chalk.cyan("Undocumented"), chalk.cyan("Total"), chalk.cyan("Percent")]
       });
       oStats = oCodo.getStats();
-      oTable.push([chalk.cyan("files"), "", "", oStats.files, ""]);
-      oTable.push([chalk.cyan("extras"), "", "", oStats.extras, ""]);
-      oTable.push([chalk.cyan("classes"), oStats.classes.documented, oStats.classes.undocumented, oStats.classes.total, (iPercent = oStats.classes.percent) ? chalk[iPercent > 100 ? "yellow" : "green"]("" + iPercent + "%") : "-"]);
-      oTable.push([chalk.cyan("mixins"), oStats.mixins.documented, oStats.mixins.undocumented, oStats.mixins.total, (iPercent = oStats.mixins.percent) ? chalk[iPercent > 100 ? "yellow" : "green"]("" + iPercent + "%") : "-"]);
-      oTable.push([chalk.cyan("methods"), oStats.methods.documented, oStats.methods.undocumented, oStats.methods.total, (iPercent = oStats.methods.percent) ? chalk[iPercent > 100 ? "yellow" : "green"]("" + iPercent + "%") : "-"]);
+      _ref1 = ["classes", "mixins", "methods"];
+      for (_i = 0, _len = _ref1.length; _i < _len; _i++) {
+        sSection = _ref1[_i];
+        oTable.push([chalk.cyan(sSection), oStats[sSection].documented, oStats[sSection].undocumented, oStats[sSection].total, (iPercent = oStats[sSection].percent) ? chalk[iPercent > 100 ? "yellow" : "green"]("" + iPercent + "%") : "-"]);
+      }
       oTable.push([]);
       oTable.push(["", chalk.cyan("Files"), chalk.cyan("Extras"), chalk.cyan("Objects"), chalk.cyan("Coverage")]);
       oTable.push([chalk.underline.cyan(this.nameArgs), oStats.files, oStats.extras, oStats.all.total, chalk.bold[(iPercent = oStats.all.percent) > 100 ? "yellow" : "green"]("" + iPercent + "%")]);
@@ -73,18 +73,18 @@ module.exports = function(grunt) {
       grunt.log.writeln();
       grunt.log.writeln(chalk.yellow.underline("Undocumented objects"));
       grunt.log.writeln();
-      _ref1 = oStats.undocumented;
+      _ref2 = oStats.undocumented;
       _results = [];
-      for (sSection in _ref1) {
-        oData = _ref1[sSection];
+      for (sSection in _ref2) {
+        oData = _ref2[sSection];
         if (!oData.length) {
           continue;
         }
         oTable = new CLITable({
           head: [chalk.cyan(sSection), chalk.cyan("Path")]
         });
-        for (_i = 0, _len = oData.length; _i < _len; _i++) {
-          oEntry = oData[_i];
+        for (_j = 0, _len1 = oData.length; _j < _len1; _j++) {
+          oEntry = oData[_j];
           oTable.push([chalk.cyan(oEntry[0]), path.relative(process.cwd(), oEntry[1])]);
         }
         grunt.log.writeln(oTable.toString());

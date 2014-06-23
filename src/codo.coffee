@@ -56,29 +56,14 @@ module.exports = ( grunt ) ->
 
             oStats = oCodo.getStats()
 
-            oTable.push [ chalk.cyan( "files" ), "", "", oStats.files, "" ]
-            oTable.push [ chalk.cyan( "extras" ), "", "", oStats.extras, "" ]
-            oTable.push [
-                chalk.cyan( "classes" )
-                oStats.classes.documented
-                oStats.classes.undocumented
-                oStats.classes.total
-                if iPercent = oStats.classes.percent then chalk[ if iPercent > 100 then "yellow" else "green" ]( "#{ iPercent }%" ) else "-"
-            ]
-            oTable.push [
-                chalk.cyan( "mixins" )
-                oStats.mixins.documented
-                oStats.mixins.undocumented
-                oStats.mixins.total
-                if iPercent = oStats.mixins.percent then chalk[ if iPercent > 100 then "yellow" else "green" ]( "#{ iPercent }%" ) else "-"
-            ]
-            oTable.push [
-                chalk.cyan( "methods" )
-                oStats.methods.documented
-                oStats.methods.undocumented
-                oStats.methods.total
-                if iPercent = oStats.methods.percent then chalk[ if iPercent > 100 then "yellow" else "green" ]( "#{ iPercent }%" ) else "-"
-            ]
+            for sSection in [ "classes", "mixins", "methods" ]
+                oTable.push [
+                    chalk.cyan sSection
+                    oStats[ sSection ].documented
+                    oStats[ sSection ].undocumented
+                    oStats[ sSection ].total
+                    if iPercent = oStats[ sSection ].percent then chalk[ if iPercent > 100 then "yellow" else "green" ]( "#{ iPercent }%" ) else "-"
+                ]
             oTable.push []
             oTable.push [ "", chalk.cyan( "Files" ), chalk.cyan( "Extras" ), chalk.cyan( "Objects" ), chalk.cyan( "Coverage" ) ]
             oTable.push [
