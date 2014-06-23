@@ -47,16 +47,158 @@ grunt.initConfig({
 });
 ```
 
+### Target
+
+**Codo** expect to lookup for `coffee` files into given folder, and a destination path to generate the documentation.
+
+So, in your target, don't forget to add `src` and `dest` properties. The `dest` property is optional, and is defaulting to `"./doc"`.
+
+**Note:** as **Codo** seems to expect folders path instead of files list, if files are given, the task will use their dirname as source.
+
 ### Options
 
-_(Coming Soon)_
+#### options.stats
+
+Type: `Boolean`  
+Default value: `true`
+
+Show stats about the documentation generation.
+
+#### options.extension
+
+Type: `String`  
+Default value: `"coffee"`
+
+Coffee files extension.
+
+#### options.output
+
+Type: `String` (path)  
+Default value: `target.dest`, or `"./doc"`
+
+The documentation destination directory. If this option is given, it will overwrite the target's `dest` parameter.
+
+#### options.theme
+
+Type: `String`  
+Default value: `theme`
+
+The theme to be used.
+
+#### options.name
+
+Type: `String`  
+Default value: `"Codo"`
+
+The project name.
+
+#### options.title
+
+Type: `String`  
+Default value: `"Documentation"`
+
+Documentation HTML Title.
+
+#### options.readme
+
+Type: `String` (path)  
+Default value: `"README.md"`
+
+The README file used in documentation.
+
+#### options.quiet
+
+Type: `Boolean`  
+Default value: `false`
+
+Supress warnings
+
+#### options.verbose
+
+Type: `Boolean`  
+Default value: `false`
+
+Show parsing errors.
+
+#### options.undocumented
+
+Type: `Boolean`  
+Default value: `false`
+
+List undocumented objects.
+
+#### options.closure
+
+Type: `Boolean`  
+Default value: `false`
+
+Try to parse closure-like block comments.
+
+#### options.private
+
+Type: `Boolean`  
+Default value: `false`
+
+Show privates.
+
+#### options.analytics
+
+Type: `String`  
+Default value: `false`
+
+The Google Analytics ID.
+
+#### options.extras
+
+Type: `Array` of `String` (path)  
+Default value: `[]`
+
+Extra files to add to the documentation. **Markdown** files will be parsed.
+
+### Usage Examples
+
+#### Default Options
+
+In this example, the default options are used to generate the documentation for the coffee files from the `src` directory into the default `./doc` folder.
+
+```js
+grunt.initConfig({
+  codo: {
+    src: [
+      'src'
+    ]
+  },
+});
+```
+
+#### Custom Options
+
+In this example, custom options are used to generate the documentation from api controllers and models into the `website/doc/api` folder. We also set names and title, include a *license* file, and ask the task to show us the undocumented objects, but not the stats of the generation.
+
+```js
+grunt.initConfig({
+  codo: {
+    options:
+      name: "AwesomeProject"
+      title: "AwesomeProject API Documentation"
+      extra: [ "LICENSE-MIT" ]
+      undocumented: yes
+      stats: no
+    src: [
+      "src/controllers/api"
+      "src/models"
+    ]
+    dest: "website/doc/api"
+  },
+});
+```
 
 ## Contributing
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
 
 ## Release History
 
-* Starting project (*22/06/14*)
+* **2014/06/23** : v0.1.0
 
 ### TODO
 
