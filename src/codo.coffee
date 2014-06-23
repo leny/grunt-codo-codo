@@ -32,7 +32,7 @@ module.exports = ( grunt ) ->
             private: no
             analytics: no
             stats: yes
-            extra: []
+            extras: []
 
         aFolderSources = []
 

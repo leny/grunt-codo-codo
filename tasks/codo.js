@@ -36,7 +36,7 @@ module.exports = function(grunt) {
       "private": false,
       analytics: false,
       stats: true,
-      extra: []
+      extras: []
     });
     aFolderSources = [];
     this.filesSrc.filter(function(sFilePath) {
