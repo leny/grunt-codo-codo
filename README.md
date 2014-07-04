@@ -10,6 +10,8 @@
 As I need a grunt task to generate *codo* documentation urgently, I prefer to recode my version of *grunt-codo*, renamed *grunt-codo-codo*. When the task will be ready, I'll push it on npm *and* should propose my work to the *grunt-codo* maintainers, to merge projects.  
 As for now, I really need reactivity and solutions, so I made it myself.
 
+**UPDATE:** As *grunt-codo-codo* & *grunt-codo* has been merged, this plugin is deprecated. Use [grunt-codo](https://github.com/Stoney-FD/grunt-codo) instead.
+
 * * *
 
 ## Getting Started
@@ -198,6 +200,7 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 
 ## Release History
 
+* **2014/07/04** : v0.1.1 - deprecation
 * **2014/06/23** : v0.1.0
 
 ### TODO
